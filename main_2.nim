@@ -2,10 +2,16 @@ import sequtils, strutils, os  # Все нужные библиотеки уже
 import utils  # Рекомендуем ознакомиться для выполнения задания :)
 
 const RootDir = "folder"
-# Ниже реализуйте требуемую задачу
 var dirs, files, exts: seq[string]
 
+# Получаем список папок с заменой пробелов на "_"
+dirs = utils.getDirs(RootDir).mapIt(it.replace(" ", "_"))
 
+# Получаем список файлов без пути к папке
+files = utils.getFiles(RootDir).mapIt(splitFile(it).name)
+
+# Сохраняем расширения всех файлов
+exts = utils.getFiles(RootDir).mapIt(getFileExtension(it))
 
 # Не изменяйте код ниже
 import sets
